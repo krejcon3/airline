@@ -1,4 +1,4 @@
-package au.com.example.entity;
+package cz.cvut.fel.aos.entity;
 
 import java.io.Serializable;
 

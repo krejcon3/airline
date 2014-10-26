@@ -1,9 +1,9 @@
-package au.com.example.service;
+package cz.cvut.fel.aos.service;
 
-import au.com.example.api.data.Customer;
-import au.com.example.entity.CustomerEntity;
-import au.com.example.persistence.CustomerDao;
-import au.com.example.persistence.CustomerDaoImpl;
+import cz.cvut.fel.aos.api.data.Customer;
+import cz.cvut.fel.aos.entity.CustomerEntity;
+import cz.cvut.fel.aos.persistence.CustomerDao;
+import cz.cvut.fel.aos.persistence.CustomerDaoImpl;
 
 public class CustomerServiceImpl implements CustomerService {
 

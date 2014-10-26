@@ -1,6 +1,6 @@
-package au.com.example.persistence;
+package cz.cvut.fel.aos.persistence;
 
-import au.com.example.entity.CustomerEntity;
+import cz.cvut.fel.aos.entity.CustomerEntity;
 
 public interface CustomerDao {
 	

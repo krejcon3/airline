@@ -1,4 +1,4 @@
-package au.com.example.api.data;
+package cz.cvut.fel.aos.api.data;
 
 import java.io.Serializable;
 

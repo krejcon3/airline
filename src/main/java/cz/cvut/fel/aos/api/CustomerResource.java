@@ -1,4 +1,4 @@
-package au.com.example.api;
+package cz.cvut.fel.aos.api;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -10,9 +10,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import au.com.example.api.data.Customer;
-import au.com.example.service.CustomerService;
-import au.com.example.service.CustomerServiceImpl;
+import cz.cvut.fel.aos.api.data.Customer;
+import cz.cvut.fel.aos.service.CustomerService;
+import cz.cvut.fel.aos.service.CustomerServiceImpl;
 
 @Path(value = "customer")
 public class CustomerResource {

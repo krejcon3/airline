@@ -1,6 +1,6 @@
-package au.com.example.service;
+package cz.cvut.fel.aos.service;
 
-import au.com.example.api.data.Customer;
+import cz.cvut.fel.aos.api.data.Customer;
 
 public interface CustomerService {
 

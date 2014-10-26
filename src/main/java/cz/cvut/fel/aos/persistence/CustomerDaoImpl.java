@@ -1,11 +1,11 @@
-package au.com.example.persistence;
+package cz.cvut.fel.aos.persistence;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import au.com.example.entity.CustomerEntity;
+import cz.cvut.fel.aos.entity.CustomerEntity;
 
 public class CustomerDaoImpl implements CustomerDao {
 

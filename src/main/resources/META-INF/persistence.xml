@@ -6,7 +6,7 @@
 	<persistence-unit name="persist-unit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
    		<!-- All persistence classes must be listed -->
-	    <class>au.com.example.entity.CustomerEntity</class>
+	    <class>cz.cvut.fel.aos.entity.CustomerEntity</class>
 
 	    <properties>
 	        <!-- Provider-specific connection properties -->
