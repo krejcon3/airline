@@ -14,6 +14,7 @@
 		<derby.version>10.10.1.1</derby.version>
 		<junit.version>4.8.2</junit.version>
 		<mockito.version>1.9.5</mockito.version>
+        <mysqlconnector.version>5.1.6</mysqlconnector.version>
 	</properties>
 
 	<dependencies>
@@ -78,6 +79,11 @@
 			<version>${mockito.version}</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysqlconnector.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>
