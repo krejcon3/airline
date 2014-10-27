@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS destination (
+  id INTEGER(11) NOT NULL AUTO_INCREMENT,
+  destination_name VARCHAR(100) NOT NULL,
+  latitude FLOAT NOT NULL,
+  longitude FLOAT NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS flight (
+  id INTEGER(11) NOT NULL AUTO_INCREMENT,
+  flight_name VARCHAR(100) NOT NULL,
+  from_destination INTEGER(11) NOT NULL,
+  to_destination INTEGER(11) NOT NULL,
+  departure DATETIME NOT NULL,
+  distance FLOAT NOT NULL,
+  price FLOAT NOT NULL,
+  seats INTEGER NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (from_destination)
+    REFERENCES destination (id)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  FOREIGN KEY (to_destination)
+    REFERENCES destination (id)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+)ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS reservation (
+  id INTEGER(11) NOT NULL AUTO_INCREMENT,
+  flight INTEGER(11) NOT NULL,
+  seats INTEGER NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  state ENUM("NEW", "PAID", "CANCELED") DEFAULT "NEW",
+  created DATETIME NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (flight)
+    REFERENCES flight (id)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
+)ENGINE = InnoDB;
