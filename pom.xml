@@ -87,7 +87,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>jrws</finalName>
+		<finalName>airline</finalName>
 	</build>
 
 	<developers>
