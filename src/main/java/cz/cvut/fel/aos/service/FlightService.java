@@ -19,8 +19,8 @@ public class FlightService {
 		dao = new FlightDAO();
 	}
 
-	public ArrayList<Flight> find() {
-		return this.entityListToDataList(dao.getAll());
+	public ArrayList<Flight> find(int offset, int limit, String order, String filter) {
+		return this.entityListToDataList(dao.getAll(offset, limit, order, filter));
 	}
 
 	public Flight find(Long id) {

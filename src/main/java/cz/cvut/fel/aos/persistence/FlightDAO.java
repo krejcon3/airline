@@ -12,9 +12,20 @@ import java.util.List;
 public class FlightDAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
-	public List<FlightEntity> getAll() {
+	public List<FlightEntity> getAll(int offset, int limit, String order, String filter) {
+		if (order != null) {
+			order = "f." + order.replace(":", " ");
+		}
+		String query = "SELECT f FROM FlightEntity f" + (order == null ? "" : " ORDER BY " + order);
+		if (limit > 0) {
+			return this.getEntityManager()
+				.createQuery(query)
+				.setFirstResult(offset)
+				.setMaxResults(limit)
+				.getResultList();
+		}
 		return this.getEntityManager()
-			.createQuery("SELECT f FROM FlightEntity f")
+			.createQuery(query)
 			.getResultList();
 	}
 

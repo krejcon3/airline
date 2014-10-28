@@ -24,9 +24,20 @@ public class FlightResource {
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response getAll() {
-		ArrayList<Flight> list = this.service.find();
+	public Response getAll(
+		@HeaderParam("X-Filter") String filter,
+		@HeaderParam("X-Base") String b,
+		@HeaderParam("X-Offset") String of,
+		@HeaderParam("X-Order") String order
+	) {
+		int limit = b == null ? 0 : Integer.parseInt(b);
+		int offset = of == null ? 0 : Integer.parseInt(of);
+
+		ArrayList<Flight> list = this.service.find(offset, limit, order, filter);
 		Response.ResponseBuilder builder = Response.ok(list);
+		if (b == null) {
+			builder.header("X-Count-records", list.size());
+		}
 		return builder.build();
 	}
 
