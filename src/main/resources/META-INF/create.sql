@@ -39,3 +39,8 @@ CREATE TABLE IF NOT EXISTS reservation (
     ON DELETE CASCADE
     ON UPDATE NO ACTION
 )ENGINE = InnoDB;
+
+INSERT INTO destination VALUES('', 'Prague, Czech republic', 50.0511942, 14.4269650);
+INSERT INTO destination VALUES('', 'Paris, France', 48.8502183, 2.3734825);
+
+INSERT INTO flight VALUES('', 'Lufthansa 1234', 1, 2, NOW() + INTERVAL 1 WEEK, 889.7, 4269, 525);
