@@ -9,13 +9,9 @@ public abstract class AbstractEntity implements Serializable {
 
 	protected Long id;
 
-	public Long getId() {
-		return id;
-	}
+	public abstract Long getId();
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public abstract void setId(Long id);
 
 	@Override
 	public int hashCode() {

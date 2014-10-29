@@ -37,6 +37,16 @@ public class FlightEntity extends AbstractEntity {
 	@Column(name = "seats", nullable = false)
 	private int seats;
 
+	public Long getId() {
+		System.out.println("ABSTRACT-ID: " + this.id);
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+		System.out.println("ABSTRACT-ID: " + this.id);
+	}
+
 	public String getName() {
 		return name;
 	}

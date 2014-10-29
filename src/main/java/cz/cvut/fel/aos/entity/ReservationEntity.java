@@ -31,6 +31,16 @@ public class ReservationEntity extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 
+	public Long getId() {
+		System.out.println("ABSTRACT-ID: " + this.id);
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+		System.out.println("ABSTRACT-ID: " + this.id);
+	}
+
 	public int getFlight() {
 		return flight;
 	}

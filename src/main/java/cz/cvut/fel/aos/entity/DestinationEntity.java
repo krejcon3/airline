@@ -22,6 +22,16 @@ public class DestinationEntity extends AbstractEntity {
 	@Column(name = "longitude", nullable = false)
 	private double longitude;
 
+	public Long getId() {
+		System.out.println("ABSTRACT-ID: " + this.id);
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+		System.out.println("ABSTRACT-ID: " + this.id);
+	}
+
 	public String getName() {
 		return name;
 	}
