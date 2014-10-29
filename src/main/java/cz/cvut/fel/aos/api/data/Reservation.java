@@ -14,6 +14,7 @@ public class Reservation implements Serializable {
 	private String password;
 	private String state;
 	private String created;
+	private String url;
 
 	public Long getId() {
 		return id;
@@ -61,5 +62,13 @@ public class Reservation implements Serializable {
 
 	public void setCreated(String created) {
 		this.created = created;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

@@ -11,6 +11,7 @@ public class Destination implements Serializable {
 	private String name;
 	private double latitude;
 	private double longitude;
+	private String url;
 
 	public Long getId() {
 		return id;
@@ -42,5 +43,13 @@ public class Destination implements Serializable {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

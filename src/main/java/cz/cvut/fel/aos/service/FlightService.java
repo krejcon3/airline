@@ -72,6 +72,7 @@ public class FlightService {
 			data.setTo(entity.getTo());
 			data.setFrom(entity.getFrom());
 			data.setPrice(entity.getPrice());
+			data.setUrl("/flight/" + entity.getId());
 		}
 		return data;
 	}

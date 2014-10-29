@@ -70,6 +70,7 @@ public class ReservationService {
 			data.setFlight(entity.getFlight());
 			data.setPassword(entity.getPassword());
 			data.setState(entity.getState());
+			data.setUrl("/reservation/" + entity.getId());
 		}
 		return data;
 	}
