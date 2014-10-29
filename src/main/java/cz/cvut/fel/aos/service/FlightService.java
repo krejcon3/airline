@@ -23,7 +23,7 @@ public class FlightService {
 		dao = new FlightDAO();
 	}
 
-	public ArrayList<Flight> find(int offset, int limit, String order, String filter) {
+	public ArrayList<Flight> find(int offset, int limit, String order, String filter) throws PersistenceException {
 		return this.entityListToDataList(dao.getAll(offset, limit, order, filter));
 	}
 

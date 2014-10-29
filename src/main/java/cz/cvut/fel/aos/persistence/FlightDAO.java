@@ -4,6 +4,10 @@ import cz.cvut.fel.aos.entity.FlightEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TemporalType;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,17 +15,61 @@ import java.util.List;
  */
 public class FlightDAO extends AbstractDAO {
 
+	private String dateformat = "yyyy-MM-dd'T'HH:mm:ssXXX";
+
 	@SuppressWarnings("unchecked")
-	public List<FlightEntity> getAll(int offset, int limit, String order, String filter) {
-		if (order != null) {
-			order = "f." + order.replace(":", " ");
+	public List<FlightEntity> getAll(int offset, int limit, String order, String filter) throws PersistenceException {
+		String query = "SELECT f FROM FlightEntity f";
+
+		Date dateFrom = null;
+		Date dateTo = null;
+		if (filter != null) {
+			SimpleDateFormat df = new SimpleDateFormat(this.dateformat);
+			String[] params = filter.trim().split(",");
+			if (params.length != 2) {
+				throw new PersistenceException("Invalid count of params, define From and To dates.");
+			}
+			String[] from = params[0].trim().split("=");
+			String[] to = params[1].trim().split("=");
+			try {
+				dateFrom = df.parse(from[1].trim());
+				dateTo = df.parse(to[1].trim());
+			} catch (ParseException e) {
+				throw new PersistenceException("Bad dateformat: " + this.dateformat + " " + filter);
+			}
 		}
-		String query = "SELECT f FROM FlightEntity f" + (order == null ? "" : " ORDER BY " + order);
+
+		if (filter != null) {
+			query += " WHERE f.dateOfDeparture BETWEEN :startDate AND :endDate";
+		}
+
+		if (order != null) {
+			order.trim();
+			order = "f." + order.replace(":", " ");
+			query += " ORDER BY " + order;
+		}
+
 		if (limit > 0) {
+			if (filter != null) {
+				return this.getEntityManager()
+					.createQuery(query)
+					.setParameter("startDate", dateFrom, TemporalType.DATE)
+					.setParameter("endDate", dateTo, TemporalType.DATE)
+					.setFirstResult(offset)
+					.setMaxResults(limit)
+					.getResultList();
+			}
 			return this.getEntityManager()
 				.createQuery(query)
 				.setFirstResult(offset)
 				.setMaxResults(limit)
+				.getResultList();
+		}
+		if (filter != null) {
+			return this.getEntityManager()
+				.createQuery(query)
+				.setParameter("startDate", dateFrom, TemporalType.TIMESTAMP)
+				.setParameter("endDate", dateTo, TemporalType.TIMESTAMP)
 				.getResultList();
 		}
 		return this.getEntityManager()

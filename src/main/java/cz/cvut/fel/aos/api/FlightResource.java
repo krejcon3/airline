@@ -33,8 +33,12 @@ public class FlightResource {
 	) {
 		int limit = b == null ? 0 : Integer.parseInt(b);
 		int offset = of == null ? 0 : Integer.parseInt(of);
-
-		ArrayList<Flight> list = this.service.find(offset, limit, order, filter);
+		ArrayList<Flight> list;
+		try {
+			list = this.service.find(offset, limit, order, filter);
+		} catch (PersistenceException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		}
 		Response.ResponseBuilder builder = Response.ok(list);
 		if (b == null) {
 			builder.header("X-Count-records", list.size());
