@@ -16,6 +16,7 @@ public class Flight implements Serializable {
 	private double distance;
 	private double price;
 	private int seats;
+	private String url;
 
 	public Long getId() {
 		return id;
@@ -79,5 +80,13 @@ public class Flight implements Serializable {
 
 	public void setSeats(int seats) {
 		this.seats = seats;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

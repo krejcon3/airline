@@ -63,6 +63,7 @@ public class DestinationService {
 			data.setName(entity.getName());
 			data.setLatitude(entity.getLatitude());
 			data.setLongitude(entity.getLongitude());
+			data.setUrl("/destination/" + entity.getId());
 		}
 		return data;
 	}
