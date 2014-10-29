@@ -12,7 +12,7 @@ public class Flight implements Serializable {
 	private String name;
 	private int from;
 	private int to;
-	private Date dateOfDeparture;
+	private String dateOfDeparture;
 	private double distance;
 	private double price;
 	private int seats;
@@ -49,11 +49,11 @@ public class Flight implements Serializable {
 		this.to = to;
 	}
 
-	public Date getDateOfDeparture() {
+	public String getDateOfDeparture() {
 		return dateOfDeparture;
 	}
 
-	public void setDateOfDeparture(Date dateOfDeparture) {
+	public void setDateOfDeparture(String dateOfDeparture) {
 		this.dateOfDeparture = dateOfDeparture;
 	}
 

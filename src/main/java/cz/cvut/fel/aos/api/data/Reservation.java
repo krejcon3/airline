@@ -13,7 +13,7 @@ public class Reservation implements Serializable {
 	private int seats;
 	private String password;
 	private String state;
-	private Date created;
+	private String created;
 
 	public Long getId() {
 		return id;
@@ -55,11 +55,11 @@ public class Reservation implements Serializable {
 		this.state = state;
 	}
 
-	public Date getCreated() {
+	public String getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(String created) {
 		this.created = created;
 	}
 }

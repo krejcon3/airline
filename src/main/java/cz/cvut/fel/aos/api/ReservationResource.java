@@ -3,6 +3,7 @@ package cz.cvut.fel.aos.api;
 import cz.cvut.fel.aos.api.data.Reservation;
 import cz.cvut.fel.aos.persistence.PersistenceException;
 import cz.cvut.fel.aos.service.ReservationService;
+import cz.cvut.fel.aos.service.ServiceException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -46,6 +47,8 @@ public class ReservationResource {
 			return Response.status(Response.Status.OK).entity("Reservation " + data.getId() + " created.").type(MediaType.APPLICATION_JSON).build();
 		} catch(PersistenceException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		} catch(ServiceException e) {
+			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
 		}
 	}
 
@@ -58,6 +61,8 @@ public class ReservationResource {
 			return Response.status(Response.Status.OK).entity("Reservation " + data.getId() + " updated.").type(MediaType.APPLICATION_JSON).build();
 		} catch(PersistenceException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		} catch(ServiceException e) {
+			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
 		}
 	}
 
