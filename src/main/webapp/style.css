@@ -1,0 +1,24 @@
+body, #container {
+	padding: 0;
+	margin: 0 auto;
+}
+nav {
+	width: 100%;
+	height: 50px;
+}
+
+nav li {
+	float:left;
+	list-style: none;
+	margin: 10px 20px;
+	font-size: 30px;
+}
+
+a, a:active {
+	color: black;
+}
+
+a:hover {
+	color: grey;
+	text-decoration: none;
+}
