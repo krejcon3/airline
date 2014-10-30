@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+    <doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 1.14 09/09/2012 05:39 PM"/>
+    <resources base="http://localhost:9998">
+        <resource path="flight">
+            <method id="getAll" name="GET">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Filter" style="header" type="xs:string"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Base" style="header" type="xs:string"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Offset" style="header" type="xs:string"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Order" style="header" type="xs:string"/>
+                </request>
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+            <method id="saveFlight" name="POST">
+                <request>
+                    <representation mediaType="application/json"/>
+                </request>
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+            <resource path="{id}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="template" type="xs:long"/>
+                <method id="getData" name="GET">
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="deleteData" name="DELETE">
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+                <method id="updateData" name="PUT">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="reservation">
+            <method id="getAll" name="GET">
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+            <method id="saveReservation" name="POST">
+                <request>
+                    <representation mediaType="application/json"/>
+                </request>
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+            <resource path="{id}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="template" type="xs:long"/>
+                <method id="getData" name="GET">
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="deleteData" name="DELETE">
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+                <method id="updateData" name="PUT">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="destination">
+            <method id="getAll" name="GET">
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+            <method id="saveDestination" name="POST">
+                <request>
+                    <representation mediaType="application/json"/>
+                </request>
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+            <resource path="{id}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="template" type="xs:long"/>
+                <method id="getData" name="GET">
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="deleteData" name="DELETE">
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+                <method id="updateData" name="PUT">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>
