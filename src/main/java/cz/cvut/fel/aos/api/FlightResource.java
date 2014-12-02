@@ -4,6 +4,7 @@ import cz.cvut.fel.aos.api.data.Flight;
 import cz.cvut.fel.aos.persistence.PersistenceException;
 import cz.cvut.fel.aos.service.FlightService;
 import cz.cvut.fel.aos.service.ServiceException;
+import cz.cvut.fel.aos.service.UserService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,20 +18,29 @@ import java.util.ArrayList;
 public class FlightResource {
 
 	protected FlightService service;
+	protected UserService userService;
 
 	public FlightResource() {
 		this.service = new FlightService();
+		this.userService = new UserService();
 	}
 
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response getAll(
+		@HeaderParam("Authorization") String authorization,
 		@HeaderParam("X-Filter") String filter,
 		@HeaderParam("X-Base") String b,
 		@HeaderParam("X-Offset") String of,
 		@HeaderParam("X-Order") String order
 	) {
+		try {
+			this.userService.authenticate(authorization);
+		} catch (UnauthorizedException e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		}
+
 		int limit = b == null ? 0 : Integer.parseInt(b);
 		int offset = of == null ? 0 : Integer.parseInt(of);
 		ArrayList<Flight> list;
@@ -49,47 +59,62 @@ public class FlightResource {
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Flight getData(@PathParam("id") Long id) {
-		return this.service.find(id);
+	public Response getData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
+		try {
+			this.userService.authenticate(authorization);
+			Response.ResponseBuilder builder = Response.ok(this.service.find(id));
+			return builder.build();
+		} catch (UnauthorizedException e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		}
 	}
 
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveFlight(Flight data) {
+	public Response saveFlight(@HeaderParam("Authorization") String authorization, Flight data) {
 		try {
+			this.userService.authenticate(authorization);
 			this.service.create(data);
 			return Response.status(Response.Status.OK).entity("Flight " + data.getId() + " created.").type(MediaType.APPLICATION_JSON).build();
 		} catch(PersistenceException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
 		} catch(ServiceException e) {
 			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		} catch (UnauthorizedException e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
 		}
 	}
 
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response updateData(@PathParam("id") Long id, Flight data) {
+	public Response updateData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id, Flight data) {
 		try {
+			this.userService.authenticate(authorization);
 			this.service.update(id, data);
 			return Response.status(Response.Status.OK).entity("Flight " + data.getId() + " updated.").type(MediaType.APPLICATION_JSON).build();
 		} catch(PersistenceException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
 		} catch(ServiceException e) {
 			return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		} catch (UnauthorizedException e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
 		}
 	}
 
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteData(@PathParam("id") Long id) {
+	public Response deleteData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
 		try {
+			this.userService.authenticate(authorization);
 			this.service.delete(id);
 			return Response.status(Response.Status.OK).entity("Flight " + id + " deleted.").type(MediaType.APPLICATION_JSON).build();
 		} catch(PersistenceException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+		} catch (UnauthorizedException e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
 		}
 	}
 }
