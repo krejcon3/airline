@@ -44,8 +44,17 @@ public class ReservationResource {
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Reservation getReservation(@PathParam("id") Long id) {
-		return this.service.find(id);
+	public Response getReservation(@HeaderParam("X-Password") String password, @PathParam("id") Long id) {
+		Reservation reservation = this.service.find(id);
+		if (reservation == null) {
+			return Response.status(Response.Status.NOT_FOUND).entity("Reservation not found.").type(MediaType.APPLICATION_JSON).build();
+		}
+		if (reservation.getPassword().equals(password)) {
+			Response.ResponseBuilder builder = Response.ok(reservation);
+			return builder.build();
+		} else {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid password.").type(MediaType.APPLICATION_JSON).build();
+		}
 	}
 
 	@POST
@@ -65,7 +74,11 @@ public class ReservationResource {
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response updateRservation(@PathParam("id") Long id, Reservation data) {
+	public Response updateRservation(@HeaderParam("X-Password") String password, @PathParam("id") Long id, Reservation data) {
+		Reservation reservation = this.service.find(id);
+		if (reservation.getPassword().equals(password)) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid password.").type(MediaType.APPLICATION_JSON).build();
+		}
 		try {
 			this.service.update(id, data);
 			return Response.status(Response.Status.OK).entity("Reservation " + data.getId() + " updated.").type(MediaType.APPLICATION_JSON).build();
