@@ -2,50 +2,8 @@
 <application xmlns="http://wadl.dev.java.net/2009/02">
     <doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 1.14 09/09/2012 05:39 PM"/>
     <resources base="http://localhost:9998">
-        <resource path="flight">
-            <method id="getAll" name="GET">
-                <request>
-                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Filter" style="header" type="xs:string"/>
-                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Base" style="header" type="xs:string"/>
-                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Offset" style="header" type="xs:string"/>
-                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Order" style="header" type="xs:string"/>
-                </request>
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-            <method id="saveFlight" name="POST">
-                <request>
-                    <representation mediaType="application/json"/>
-                </request>
-                <response>
-                    <representation mediaType="*/*"/>
-                </response>
-            </method>
-            <resource path="{id}">
-                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="template" type="xs:long"/>
-                <method id="getData" name="GET">
-                    <response>
-                        <representation mediaType="application/json"/>
-                    </response>
-                </method>
-                <method id="deleteData" name="DELETE">
-                    <response>
-                        <representation mediaType="*/*"/>
-                    </response>
-                </method>
-                <method id="updateData" name="PUT">
-                    <request>
-                        <representation mediaType="*/*"/>
-                    </request>
-                    <response>
-                        <representation mediaType="application/json"/>
-                    </response>
-                </method>
-            </resource>
-        </resource>
         <resource path="reservation">
-            <method id="getAll" name="GET">
+            <method id="getReservations" name="GET">
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
@@ -60,19 +18,75 @@
             </method>
             <resource path="{id}">
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="template" type="xs:long"/>
-                <method id="getData" name="GET">
+                <method id="updateRservation" name="PUT">
+                    <request>
+                        <representation mediaType="*/*"/>
+                    </request>
                     <response>
                         <representation mediaType="application/json"/>
                     </response>
                 </method>
-                <method id="deleteData" name="DELETE">
+                <method id="deleteReservation" name="DELETE">
                     <response>
                         <representation mediaType="*/*"/>
                     </response>
                 </method>
-                <method id="updateData" name="PUT">
+                <method id="getReservation" name="GET">
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="flight">
+            <method id="saveFlight" name="POST">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                           type="xs:string"/>
+                    <representation mediaType="application/json"/>
+                </request>
+                <response>
+                    <representation mediaType="*/*"/>
+                </response>
+            </method>
+            <method id="getFlights" name="GET">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                           type="xs:string"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Filter" style="header" type="xs:string"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Base" style="header" type="xs:string"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Offset" style="header" type="xs:string"/>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="X-Order" style="header" type="xs:string"/>
+                </request>
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+            <resource path="{id}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="template" type="xs:long"/>
+                <method id="updateFlight" name="PUT">
                     <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                               type="xs:string"/>
                         <representation mediaType="*/*"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+                <method id="deleteFlight" name="DELETE">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                               type="xs:string"/>
+                    </request>
+                    <response>
+                        <representation mediaType="*/*"/>
+                    </response>
+                </method>
+                <method id="getFlight" name="GET">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                               type="xs:string"/>
                     </request>
                     <response>
                         <representation mediaType="application/json"/>
@@ -81,13 +95,19 @@
             </resource>
         </resource>
         <resource path="destination">
-            <method id="getAll" name="GET">
+            <method id="getDestinations" name="GET">
+                <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                           type="xs:string"/>
+                </request>
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
             <method id="saveDestination" name="POST">
                 <request>
+                    <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                           type="xs:string"/>
                     <representation mediaType="application/json"/>
                 </request>
                 <response>
@@ -96,19 +116,29 @@
             </method>
             <resource path="{id}">
                 <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="id" style="template" type="xs:long"/>
-                <method id="getData" name="GET">
+                <method id="updateDestination" name="PUT">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                               type="xs:string"/>
+                        <representation mediaType="*/*"/>
+                    </request>
                     <response>
                         <representation mediaType="application/json"/>
                     </response>
                 </method>
-                <method id="deleteData" name="DELETE">
+                <method id="deleteDestination" name="DELETE">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                               type="xs:string"/>
+                    </request>
                     <response>
                         <representation mediaType="*/*"/>
                     </response>
                 </method>
-                <method id="updateData" name="PUT">
+                <method id="getDestination" name="GET">
                     <request>
-                        <representation mediaType="*/*"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="Authorization" style="header"
+                               type="xs:string"/>
                     </request>
                     <response>
                         <representation mediaType="application/json"/>
