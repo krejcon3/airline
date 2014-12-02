@@ -44,3 +44,13 @@ INSERT INTO destination VALUES('', 'Prague, Czech republic', 50.0511942, 14.4269
 INSERT INTO destination VALUES('', 'Paris, France', 48.8502183, 2.3734825);
 
 INSERT INTO flight VALUES('', 'Lufthansa 1234', 1, 2, NOW() + INTERVAL 1 WEEK, 889.7, 4269, 525);
+
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER(11) NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  created DATETIME NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE = InnoDB;
+
+INSERT INTO users VALUES('', 'admin', 'admin', NOW());
