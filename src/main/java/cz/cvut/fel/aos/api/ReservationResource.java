@@ -25,7 +25,7 @@ public class ReservationResource {
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response getAll() {
+	public Response getReservations() {
 		ArrayList<Reservation> list = this.service.find();
 		Response.ResponseBuilder builder = Response.ok(list);
 		return builder.build();
@@ -34,7 +34,7 @@ public class ReservationResource {
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Reservation getData(@PathParam("id") Long id) {
+	public Reservation getReservation(@PathParam("id") Long id) {
 		return this.service.find(id);
 	}
 
@@ -55,7 +55,7 @@ public class ReservationResource {
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response updateData(@PathParam("id") Long id, Reservation data) {
+	public Response updateRservation(@PathParam("id") Long id, Reservation data) {
 		try {
 			this.service.update(id, data);
 			return Response.status(Response.Status.OK).entity("Reservation " + data.getId() + " updated.").type(MediaType.APPLICATION_JSON).build();
@@ -69,7 +69,7 @@ public class ReservationResource {
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteData(@PathParam("id") Long id) {
+	public Response deleteReservation(@PathParam("id") Long id) {
 		try {
 			this.service.delete(id);
 			return Response.status(Response.Status.OK).entity("Reservation " + id + " deleted.").type(MediaType.APPLICATION_JSON).build();

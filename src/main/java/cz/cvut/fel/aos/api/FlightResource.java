@@ -28,7 +28,7 @@ public class FlightResource {
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response getAll(
+	public Response getFlights(
 		@HeaderParam("Authorization") String authorization,
 		@HeaderParam("X-Filter") String filter,
 		@HeaderParam("X-Base") String b,
@@ -59,7 +59,7 @@ public class FlightResource {
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response getData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
+	public Response getFlight(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
 		try {
 			this.userService.authenticate(authorization);
 			Response.ResponseBuilder builder = Response.ok(this.service.find(id));
@@ -89,7 +89,7 @@ public class FlightResource {
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response updateData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id, Flight data) {
+	public Response updateFlight(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id, Flight data) {
 		try {
 			this.userService.authenticate(authorization);
 			this.service.update(id, data);
@@ -106,7 +106,7 @@ public class FlightResource {
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
+	public Response deleteFlight(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
 		try {
 			this.userService.authenticate(authorization);
 			this.service.delete(id);

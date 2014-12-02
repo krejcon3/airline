@@ -27,7 +27,7 @@ public class DestinationResource {
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response getAll(@HeaderParam("Authorization") String authorization) {
+	public Response getDestinations(@HeaderParam("Authorization") String authorization) {
 		try {
 			this.userService.authenticate(authorization);
 			ArrayList<Destination> list = this.service.find();
@@ -41,7 +41,7 @@ public class DestinationResource {
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response getData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
+	public Response getDestination(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
 		try {
 			this.userService.authenticate(authorization);
 			Response.ResponseBuilder builder = Response.ok(this.service.find(id));
@@ -69,7 +69,7 @@ public class DestinationResource {
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Response updateData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id, Destination data) {
+	public Response updateDestination(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id, Destination data) {
 		try {
 			this.userService.authenticate(authorization);
 			this.service.update(id, data);
@@ -84,7 +84,7 @@ public class DestinationResource {
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteData(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
+	public Response deleteDestination(@HeaderParam("Authorization") String authorization, @PathParam("id") Long id) {
 		try {
 			this.userService.authenticate(authorization);
 			this.service.delete(id);
