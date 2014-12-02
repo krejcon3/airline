@@ -10,6 +10,7 @@
         <class>cz.cvut.fel.aos.entity.DestinationEntity</class>
         <class>cz.cvut.fel.aos.entity.ReservationEntity</class>
         <class>cz.cvut.fel.aos.entity.FlightEntity</class>
+        <class>cz.cvut.fel.aos.entity.UserEntity</class>
 
 	    <properties>
 	        <!-- Provider-specific connection properties -->
