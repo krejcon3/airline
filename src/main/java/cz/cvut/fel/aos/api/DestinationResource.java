@@ -3,6 +3,7 @@ package cz.cvut.fel.aos.api;
 import cz.cvut.fel.aos.api.data.Destination;
 import cz.cvut.fel.aos.persistence.PersistenceException;
 import cz.cvut.fel.aos.service.DestinationService;
+import cz.cvut.fel.aos.service.GeocodeService;
 import cz.cvut.fel.aos.service.UserService;
 
 import javax.ws.rs.*;
@@ -18,10 +19,12 @@ public class DestinationResource {
 
 	protected DestinationService service;
 	protected UserService userService;
+	protected GeocodeService geocodeService;
 
 	public DestinationResource() {
 		this.service = new DestinationService();
 		this.userService = new UserService();
+		this.geocodeService = new GeocodeService();
 	}
 
 	@GET
@@ -57,6 +60,12 @@ public class DestinationResource {
 	public Response saveDestination(@HeaderParam("Authorization") String authorization, Destination data) {
 		try {
 			this.userService.authenticate(authorization);
+			double[] coordinates = this.geocodeService.getCoordinates(data.getName());
+			if (coordinates == null) {
+				return Response.status(Response.Status.BAD_REQUEST).entity("Location not found.").type(MediaType.APPLICATION_JSON).build();
+			}
+			data.setLatitude(coordinates[0]);
+			data.setLongitude(coordinates[1]);
 			this.service.create(data);
 			return Response.status(Response.Status.OK).entity("Destination " + data.getId() + " created.").type(MediaType.APPLICATION_JSON).build();
 		} catch(PersistenceException e) {
