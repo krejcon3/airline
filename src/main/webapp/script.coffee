@@ -66,6 +66,9 @@ class FlightForm
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			},
 			data: JSON.stringify(@data)
 		})
 
@@ -138,6 +141,9 @@ class DestinationForm
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			},
 			data: JSON.stringify(@data)
 		})
 
@@ -228,7 +234,10 @@ class FlightList
 		$.ajax({
 			url: 'http://localhost:8080/airline/rest/flight',
 			type: 'GET',
-			dataType: 'json'
+			dataType: 'json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		}).done(@printList);
 
 	printList: (data, status, request) =>
@@ -275,7 +284,10 @@ class FlightList
 			url: 'http://localhost:8080/airline/rest/flight/' + id,
 			type: 'DELETE',
 			dataType: 'json',
-			contentType: 'application/json'
+			contentType: 'application/json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		})
 
 		setTimeout (->), 1000
@@ -283,7 +295,10 @@ class FlightList
 		$.ajax({
 			url: 'http://localhost:8080/airline/rest/flight',
 			type: 'GET',
-			dataType: 'json'
+			dataType: 'json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		}).done(@printList);
 
 	updateData: (e) =>
@@ -292,7 +307,10 @@ class FlightList
 		$.ajax({
 			url: 'http://localhost:8080/airline/rest/flight/' + @id,
 			type: 'GET',
-			dataType: 'json'
+			dataType: 'json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		}).done(@createForm);
 
 	createForm: (data) =>
@@ -325,6 +343,9 @@ class FlightList
 			type: 'PUT',
 			dataType: 'json',
 			contentType: 'application/json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			},
 			data: JSON.stringify(@data)
 		})
 
@@ -371,7 +392,10 @@ class DestinationList
 		$.ajax({
 			url: 'http://localhost:8080/airline/rest/destination',
 			type: 'GET'
-			dataType: 'json'
+			dataType: 'json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		}).done(@printList);
 
 	printList: (data, status, request) =>
@@ -410,7 +434,10 @@ class DestinationList
 			url: 'http://localhost:8080/airline/rest/destination/' + id,
 			type: 'DELETE',
 			dataType: 'json',
-			contentType: 'application/json'
+			contentType: 'application/json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		})
 
 		setTimeout (->), 1000
@@ -418,7 +445,10 @@ class DestinationList
 		$.ajax({
 			url: 'http://localhost:8080/airline/rest/destination',
 			type: 'GET'
-			dataType: 'json'
+			dataType: 'json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		}).done(@printList);
 
 	updateData: (e) =>
@@ -427,7 +457,10 @@ class DestinationList
 		$.ajax({
 			url: 'http://localhost:8080/airline/rest/destination/' + @id,
 			type: 'GET',
-			dataType: 'json'
+			dataType: 'json',
+			headers: {
+				Authorization: 'YWRtaW46YWRtaW4='
+			}
 		}).done(@createForm);
 
 	createForm: (data) =>
