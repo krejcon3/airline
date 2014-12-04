@@ -12,16 +12,27 @@ import java.net.URLConnection;
 public abstract class AbstractRestService {
 
 	protected String getFromUrl(String uri) throws IOException {
-		URL url = new URL(uri);
-		URLConnection conn = url.openConnection();
-		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		return this.query(new URL(uri).openConnection());
+	}
 
+	protected String getFromUrl(String uri, String[][] headers) throws IOException {
+		URLConnection conn = new URL(uri).openConnection();
+		if (headers != null) {
+			for (String[] header : headers) {
+				conn.setRequestProperty(header[0], header[1]);
+			}
+		}
+		return this.query(conn);
+	}
+
+	private String query(URLConnection conn) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String content = "";
 		String line;
 		while ((line = br.readLine()) != null) {
 			content += line.trim();
+			System.out.println(line);
 		}
-		System.out.println(content);
 		return content;
 	}
 }
