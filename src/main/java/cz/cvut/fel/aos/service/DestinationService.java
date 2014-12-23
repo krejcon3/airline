@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Provides Destination objects
+ *
+ * @author Ondřej Krejčíř
  */
 public class DestinationService {
 
@@ -19,22 +21,52 @@ public class DestinationService {
 		dao = new DestinationDAO();
 	}
 
+	/**
+	 * Find all destinations
+	 *
+	 * @return List of all destinations
+	 */
 	public ArrayList<Destination> find() {
 		return this.entityListToDataList(dao.getAll());
 	}
 
+	/**
+	 * Find the destination
+	 *
+	 * @param id identificator of the destination
+	 * @return Destination
+	 */
 	public Destination find(Long id) {
 		return this.entityToData(dao.get(id));
 	}
 
+	/**
+	 * Deletes the destination
+	 *
+	 * @param id identificator of the destination
+	 * @throws PersistenceException
+	 */
 	public void delete(Long id) throws PersistenceException {
 		dao.delete(id);
 	}
 
+	/**
+	 * Save Destinationa as DestinationEntity
+	 *
+	 * @param data Destination to create
+	 * @throws PersistenceException
+	 */
 	public void create(Destination data) throws PersistenceException {
 		dao.create(this.dataToEntity(data));
 	}
 
+	/**
+	 * Update DestinationEntity
+	 *
+	 * @param id identificator of the destination to update
+	 * @param data Destination content to be updated
+	 * @throws PersistenceException
+	 */
 	public void update(Long id, Destination data) throws PersistenceException {
 		data.setId(id);
 		dao.update(this.dataToEntity(data));

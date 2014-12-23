@@ -4,23 +4,37 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Describes user entity
+ *
+ * @author Ondřej Krejčíř
  */
 @Entity
 @Table(name = "users")
 public class UserEntity extends AbstractEntity {
 
+	/**
+	 * Identificator
+	 */
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 
+	/**
+	 * User nickname
+	 */
 	@Column(name = "nickname", nullable = false)
 	private String nickname;
 
+	/**
+	 * User password
+	 */
 	@Column(name = "password", nullable = false)
 	private String password;
 
+	/**
+	 * Creation date
+	 */
 	@Column(name = "created", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;

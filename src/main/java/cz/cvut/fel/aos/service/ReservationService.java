@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Provides Reservation objects
+ *
+ * @author Ondřej Krejčíř
  */
 public class ReservationService {
 
@@ -23,22 +25,52 @@ public class ReservationService {
 		dao = new ReservationDAO();
 	}
 
+	/**
+	 * Find all reservations
+	 *
+	 * @return List of all reservations
+	 */
 	public ArrayList<Reservation> find() {
 		return this.entityListToDataList(dao.getAll());
 	}
 
+	/**
+	 * Find the reservation
+	 *
+	 * @param id identificator of the reservation
+	 * @return Destination
+	 */
 	public Reservation find(Long id) {
 		return this.entityToData(dao.get(id));
 	}
 
+	/**
+	 * Deletes the reservation
+	 *
+	 * @param id identificator of the reservation
+	 * @throws PersistenceException
+	 */
 	public void delete(Long id) throws PersistenceException {
 		dao.delete(id);
 	}
 
+	/**
+	 * Save Reservation as ReservationEntity
+	 *
+	 * @param data Reservation to create
+	 * @throws PersistenceException
+	 */
 	public void create(Reservation data) throws PersistenceException, ServiceException  {
 		dao.create(this.dataToEntity(data));
 	}
 
+	/**
+	 * Update ReservationEntity
+	 *
+	 * @param id identificator of the reservation to update
+	 * @param data Reservation content to be updated
+	 * @throws PersistenceException
+	 */
 	public void update(Long id, Reservation data) throws PersistenceException, ServiceException  {
 		data.setId(id);
 		dao.update(this.dataToEntity(data));

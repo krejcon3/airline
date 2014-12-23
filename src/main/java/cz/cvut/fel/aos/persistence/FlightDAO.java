@@ -11,12 +11,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by krejcir on 28.10.14.
+ * Flight dao for accessing database
+ *
+ * @author Ondřej Krejčíř
  */
 public class FlightDAO extends AbstractDAO {
 
 	private String dateformat = "yyyy-MM-dd'T'HH:mm:ssXXX";
 
+	/**
+	 * Get all flights or all flights by the filters
+	 *
+	 * @param offset offset of the flight
+	 * @param limit limit (count) of flights to get
+	 * @param order two part string: 'column:[asc|desc]'
+	 * @param filter date filter, in example: dateOfDepartureFrom=2013-02-27T02:04:46+01:00,dateOfDepartureTo=2013-02-27T03:04:46+01:00
+	 * @return List of Flight entities
+	 * @throws PersistenceException
+	 */
 	@SuppressWarnings("unchecked")
 	public List<FlightEntity> getAll(int offset, int limit, String order, String filter) throws PersistenceException {
 		String query = "SELECT f FROM FlightEntity f";
@@ -77,11 +89,23 @@ public class FlightDAO extends AbstractDAO {
 			.getResultList();
 	}
 
+	/**
+	 * Get the one flight
+	 *
+	 * @param id identificator of the flight
+	 * @return FlightEntity
+	 */
 	@SuppressWarnings("unchecked")
 	public FlightEntity get(Long id) {
 		return this.getEntityManager().find(FlightEntity.class, id);
 	}
 
+	/**
+	 * Delete the flight
+	 *
+	 * @param id identificator of the flight
+	 * @throws PersistenceException
+	 */
 	@SuppressWarnings("unchecked")
 	public void delete(Long id) throws PersistenceException {
 		EntityManager manager = this.getEntityManager();
@@ -105,6 +129,12 @@ public class FlightDAO extends AbstractDAO {
 		}
 	}
 
+	/**
+	 * Create new flight
+	 *
+	 * @param entity entity of new flight
+	 * @throws PersistenceException
+	 */
 	@SuppressWarnings("unchecked")
 	public void create(FlightEntity entity) throws PersistenceException {
 		EntityManager manager = this.getEntityManager();
@@ -121,6 +151,12 @@ public class FlightDAO extends AbstractDAO {
 		}
 	}
 
+	/**
+	 * Update the entity
+	 *
+	 * @param updateEntity entity to update
+	 * @throws PersistenceException
+	 */
 	@SuppressWarnings("unchecked")
 	public void update(FlightEntity updateEntity) throws PersistenceException {
 		EntityManager manager = this.getEntityManager();
@@ -129,7 +165,7 @@ public class FlightDAO extends AbstractDAO {
 		try {
 			FlightEntity entity = manager.getReference(FlightEntity.class, updateEntity.getId());
 			if (entity == null) {
-				throw new PersistenceException("Destination not exist.");
+				throw new PersistenceException("Flight not exist.");
 			}
 			entity.setName(updateEntity.getName());
 			entity.setSeats(updateEntity.getSeats());

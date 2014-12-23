@@ -8,10 +8,19 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
 /**
- * Created by krejcir on 3.12.14.
+ * Provides GPS coords for locations by place name or address
+ * Provided by Google geocode API
+ *
+ * @author Ondřej Krejčíř
  */
 public class GeocodeService extends AbstractRestService {
 
+	/**
+	 * Provides GPS coords for locations by place name or address
+	 *
+	 * @param location name or address
+	 * @return double[]{latitude, longitude}
+	 */
 	public double[] getCoordinates(String location) {
 		double[] coordinates = null;
 		try {

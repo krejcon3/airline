@@ -5,7 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- * Created by krejcir on 28.10.14.
+ * Abstract dao for accessing database
+ *
+ * @author Ondřej Krejčíř
  */
 public class AbstractDAO {
 

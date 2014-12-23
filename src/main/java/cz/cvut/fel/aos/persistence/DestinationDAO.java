@@ -7,10 +7,17 @@ import javax.persistence.EntityTransaction;
 import java.util.List;
 
 /**
- * Created by krejcir on 28.10.14.
+ * Destination dao for accessing database
+ *
+ * @author Ondřej Krejčíř
  */
 public class DestinationDAO extends AbstractDAO {
 
+	/**
+	 * Get all destinations
+	 *
+	 * @return List of all destinations
+	 */
 	@SuppressWarnings("unchecked")
 	public List<DestinationEntity> getAll() {
 		return this.getEntityManager()
@@ -18,11 +25,23 @@ public class DestinationDAO extends AbstractDAO {
 			.getResultList();
 	}
 
+	/**
+	 * Get the one destination
+	 *
+	 * @param id identificator of the destination
+	 * @return DestinationEntity
+	 */
 	@SuppressWarnings("unchecked")
 	public DestinationEntity get(Long id) {
 		return this.getEntityManager().find(DestinationEntity.class, id);
 	}
 
+	/**
+	 * Delete the destination
+	 *
+	 * @param id identificator of the destination
+	 * @throws PersistenceException
+	 */
 	@SuppressWarnings("unchecked")
 	public void delete(Long id) throws PersistenceException {
 		EntityManager manager = this.getEntityManager();
@@ -46,6 +65,12 @@ public class DestinationDAO extends AbstractDAO {
 		}
 	}
 
+	/**
+	 * Create new destination
+	 *
+	 * @param entity entity of new destination
+	 * @throws PersistenceException
+	 */
 	@SuppressWarnings("unchecked")
 	public void create(DestinationEntity entity) throws PersistenceException {
 		EntityManager manager = this.getEntityManager();
@@ -62,6 +87,12 @@ public class DestinationDAO extends AbstractDAO {
 		}
 	}
 
+	/**
+	 * Update the entity
+	 *
+	 * @param updateEntity entity to update
+	 * @throws PersistenceException
+	 */
 	@SuppressWarnings("unchecked")
 	public void update(DestinationEntity updateEntity) throws PersistenceException {
 		EntityManager manager = this.getEntityManager();

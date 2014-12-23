@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Provides Flight objects
+ *
+ * @author Ondřej Krejčíř
  */
 public class FlightService {
 
@@ -23,22 +25,57 @@ public class FlightService {
 		dao = new FlightDAO();
 	}
 
+	/**
+	 * Find all flights
+	 *
+	 * @param offset offset of the flight
+	 * @param limit limit (count) of flights to get
+	 * @param order two part string: 'column:[asc|desc]'
+	 * @param filter date filter, in example: dateOfDepartureFrom=2013-02-27T02:04:46+01:00,dateOfDepartureTo=2013-02-27T03:04:46+01:00
+	 * @return List of Flights
+	 * @throws PersistenceException
+	 */
 	public ArrayList<Flight> find(int offset, int limit, String order, String filter) throws PersistenceException {
 		return this.entityListToDataList(dao.getAll(offset, limit, order, filter));
 	}
 
+	/**
+	 * Find the flight
+	 *
+	 * @param id identificator of the flight
+	 * @return Flight
+	 */
 	public Flight find(Long id) {
 		return this.entityToData(dao.get(id));
 	}
 
+	/**
+	 * Deletes the flight
+	 *
+	 * @param id identificator of the flight
+	 * @throws PersistenceException
+	 */
 	public void delete(Long id) throws PersistenceException {
 		dao.delete(id);
 	}
 
+	/**
+	 * Save Flight as FlightEntity
+	 *
+	 * @param data Flight to create
+	 * @throws PersistenceException
+	 */
 	public void create(Flight data) throws PersistenceException, ServiceException {
 		dao.create(this.dataToEntity(data));
 	}
 
+	/**
+	 * Update FlightEntity
+	 *
+	 * @param id identificator of the flight to update
+	 * @param data Flight content to be updated
+	 * @throws PersistenceException
+	 */
 	public void update(Long id, Flight data) throws PersistenceException, ServiceException {
 		data.setId(id);
 		dao.update(this.dataToEntity(data));

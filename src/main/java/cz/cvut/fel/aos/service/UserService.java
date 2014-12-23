@@ -7,7 +7,9 @@ import cz.cvut.fel.aos.persistence.PersistenceException;
 import cz.cvut.fel.aos.persistence.UserDAO;
 
 /**
- * Created by krejcir on 30.11.14.
+ * Provides User objects
+ *
+ * @author Ondřej Krejčíř
  */
 public class UserService {
 
@@ -17,6 +19,13 @@ public class UserService {
 		this.dao = new UserDAO();
 	}
 
+	/**
+	 * Compare input password with database
+	 * funny name for private function ;-)
+	 *
+	 * @param pseudoToken input password
+	 * @return boolean if is authorized
+	 */
 	private boolean checkItSmallGorilla(String pseudoToken) {
 		String[] raw = Base64.base64Decode(pseudoToken).split(":");
 		try {
@@ -27,6 +36,13 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * Compare input password with database
+	 *
+	 * @param authorization input password
+	 * @return boolean if is authorized
+	 * @throws UnauthorizedException
+	 */
 	public boolean authenticate(String authorization) throws UnauthorizedException {
 		if (authorization != null) {
 			if (this.checkItSmallGorilla(authorization)) {

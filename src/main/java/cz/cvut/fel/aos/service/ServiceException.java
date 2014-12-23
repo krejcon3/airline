@@ -1,7 +1,9 @@
 package cz.cvut.fel.aos.service;
 
 /**
- * Created by krejcir on 29.10.14.
+ * Exception which is thrown when some error or exception found at service layer.
+ *
+ * @author Ondřej Krejčíř
  */
 public class ServiceException extends Exception {
 

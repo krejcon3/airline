@@ -12,7 +12,9 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Class provides API for operations over destinations.
+ *
+ * @author Ondřej Krejčíř
  */
 @Path(value = "destination")
 public class DestinationResource {
@@ -27,6 +29,13 @@ public class DestinationResource {
 		this.geocodeService = new GeocodeService();
 	}
 
+	/**
+	 * API method to get all destinations.
+	 * [server]/destination/
+	 *
+	 * @param authorization authorization string
+	 * @return Response
+	 */
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -41,6 +50,15 @@ public class DestinationResource {
 		}
 	}
 
+	/**
+	 * /**
+	 * API method to get the one destination.
+	 * [server]/destination/{id}
+	 *
+	 * @param authorization authorization string
+	 * @param id identificator of the destination
+	 * @return Response
+	 */
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -54,6 +72,14 @@ public class DestinationResource {
 		}
 	}
 
+	/**
+	 * API method to create new destination
+	 * [server]/destination/
+	 *
+	 * @param authorization authorization string
+	 * @param data json object descripting the destination
+	 * @return Response
+	 */
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -75,6 +101,15 @@ public class DestinationResource {
 		}
 	}
 
+	/**
+	 * API method to update the destination
+	 * [server]/destination/{id}
+	 *
+	 * @param authorization authorization string
+	 * @param id identificator of the destination
+	 * @param data json object descripting the destination
+	 * @return Response
+	 */
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -90,6 +125,14 @@ public class DestinationResource {
 		}
 	}
 
+	/**
+	 * API method to delete the destination
+	 * [server]/destination/{id}
+	 *
+	 * @param authorization authorization string
+	 * @param id identificator of the destination
+	 * @return Response
+	 */
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)

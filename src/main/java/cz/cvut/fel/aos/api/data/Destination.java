@@ -3,14 +3,33 @@ package cz.cvut.fel.aos.api.data;
 import java.io.Serializable;
 
 /**
- * Created by krejcir on 27.10.14.
+ * @author Ondřej Krejčíř
  */
 public class Destination implements Serializable {
 
+	/**
+	 * Identificator
+	 */
 	private Long id;
+
+	/**
+	 * Destination name
+	 */
 	private String name;
+
+	/**
+	 * Latitude of destination
+	 */
 	private double latitude;
+
+	/**
+	 * Longitude of destination
+	 */
 	private double longitude;
+
+	/**
+	 * URL of REST source of destination
+	 */
 	private String url;
 
 	public Long getId() {

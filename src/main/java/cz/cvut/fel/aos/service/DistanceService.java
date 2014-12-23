@@ -7,10 +7,19 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
 /**
- * Created by krejcir on 3.12.14.
+ * Provides distance between two GPS coords
+ *
+ * @author Ondřej Krejčíř
  */
 public class DistanceService extends AbstractRestService {
 
+	/**
+	 * Sends coords to server and provides distance between two that coords
+	 *
+	 * @param from first coord double[]{latitude, longitude}
+	 * @param to second coord double[]{latitude, longitude}
+	 * @return
+	 */
 	public double getDistance(double[] from, double[] to) {
 		double distance = -1;
 		try {

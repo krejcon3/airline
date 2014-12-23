@@ -1,7 +1,9 @@
 package cz.cvut.fel.aos.persistence;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Exception which is thrown when some error found at persitence layer.
+ *
+ * @author Ondřej Krejčíř
  */
 public class PersistenceException extends Exception {
 

@@ -3,22 +3,36 @@ package cz.cvut.fel.aos.entity;
 import javax.persistence.*;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Describes destination entity
+ *
+ * @author Ondřej Krejčíř
  */
 @Entity
 @Table(name = "destination")
 public class DestinationEntity extends AbstractEntity {
 
+	/**
+	 * Identificator
+	 */
 	@Id
 	@Column(name = "id")
 	protected Long id;
 
+	/**
+	 * Destination name
+	 */
 	@Column(name = "destination_name", nullable = false)
 	private String name;
 
+	/**
+	 * Latitude of destination
+	 */
 	@Column(name = "latitude", nullable = false)
 	private double latitude;
 
+	/**
+	 * Longitude of destination
+	 */
 	@Column(name = "longitude", nullable = false)
 	private double longitude;
 

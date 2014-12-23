@@ -11,7 +11,9 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Class provides API for operations over flights.
+ *
+ * @author Ondřej Krejčíř
  */
 @Path(value = "flight")
 public class FlightResource {
@@ -28,6 +30,17 @@ public class FlightResource {
 		this.distanceService = new DistanceService();
 	}
 
+	/**
+	 * API method to get all flights.
+	 * [server]/flight/
+	 *
+	 * @param authorization authorization string
+	 * @param filter date filter, in example: dateOfDepartureFrom=2013-02-27T02:04:46+01:00,dateOfDepartureTo=2013-02-27T03:04:46+01:00
+	 * @param b base, count of selected data
+	 * @param of offset of selected data
+	 * @param order two part string: 'column:[asc|desc]'
+	 * @return Response
+	 */
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -59,6 +72,14 @@ public class FlightResource {
 		return builder.build();
 	}
 
+	/**
+	 * API method to get the flight.
+	 * [server]/flight/{id}
+	 *
+	 * @param authorization authorization string
+	 * @param id identificator of the flight
+	 * @return Response
+	 */
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -72,6 +93,14 @@ public class FlightResource {
 		}
 	}
 
+	/**
+	 * API method to create new flight.
+	 * [server]/flight/
+	 *
+	 * @param authorization authorization string
+	 * @param data json object descripting the flight
+	 * @return Response
+	 */
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -89,6 +118,15 @@ public class FlightResource {
 		}
 	}
 
+	/**
+	 * API method to update the flight.
+	 * [server]/flight/{id}
+	 *
+	 * @param authorization authorization string
+	 * @param id identificator of the flight
+	 * @param data json object descripting the flight
+	 * @return Response
+	 */
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -106,6 +144,14 @@ public class FlightResource {
 		}
 	}
 
+	/**
+	 * API method to delete the flight.
+	 * [server]/flight/{id}
+	 *
+	 * @param authorization authorization string
+	 * @param id identificator of the flight
+	 * @return Response
+	 */
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)

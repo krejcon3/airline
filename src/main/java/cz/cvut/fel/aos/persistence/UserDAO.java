@@ -6,10 +6,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by krejcir on 28.10.14.
+ * User dao for accessing database
+ *
+ * @author Ondřej Krejčíř
  */
 public class UserDAO extends AbstractDAO {
 
+	/**
+	 * Get all users
+	 *
+	 * @return List of user entities
+	 */
 	@SuppressWarnings("unchecked")
 	public List<UserEntity> getAll() {
 		return this.getEntityManager()
@@ -17,11 +24,23 @@ public class UserDAO extends AbstractDAO {
 			.getResultList();
 	}
 
+	/**
+	 * Get the one user by identificator
+	 *
+	 * @param id identificator of the user
+	 * @return UserEntity
+	 */
 	@SuppressWarnings("unchecked")
 	public UserEntity get(Long id) {
 		return this.getEntityManager().find(UserEntity.class, id);
 	}
 
+	/**
+	 * Get the one user by nickname
+	 *
+	 * @param nickname nickname of the user
+	 * @return UserEntity
+	 */
 	@SuppressWarnings("unchecked")
 	public UserEntity get(String nickname) throws PersistenceException {
 		List<UserEntity> userEntities = this.getEntityManager()

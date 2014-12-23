@@ -5,13 +5,20 @@ import javax.xml.ws.soap.MTOM;
 import java.io.*;
 
 /**
- * Created by krejcir on 3.12.14.
+ * PrintService service
+ *
+ * @author Ondřej Krejčíř
  */
-
 @MTOM
 @WebService(endpointInterface = "cz.cvut.fel.aos.api.ITicketService")
 public class TicketService implements ITicketService {
 
+	/**
+	 * Save content to file and send that file back.
+	 *
+	 * @param ticket ticket content
+	 * @return byte[] file
+	 */
 	@Override
 	public byte[] getTicket(String ticket) {
 		String path = "./files/" + System.currentTimeMillis() + ".txt";

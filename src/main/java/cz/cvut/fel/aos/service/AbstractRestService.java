@@ -7,14 +7,31 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * Created by krejcir on 3.12.14.
+ * Abstract service to get content from url
+ *
+ * @author Ondřej Krejčíř
  */
 public abstract class AbstractRestService {
 
+	/**
+	 * Get content from the url
+	 *
+	 * @param uri url address
+	 * @return String content from the url
+	 * @throws IOException
+	 */
 	protected String getFromUrl(String uri) throws IOException {
 		return this.query(new URL(uri).openConnection());
 	}
 
+	/**
+	 * Get content from the url, query with headers
+	 *
+	 * @param uri url address
+	 * @param headers headers to send
+	 * @return String content from the url
+	 * @throws IOException
+	 */
 	protected String getFromUrl(String uri, String[][] headers) throws IOException {
 		URLConnection conn = new URL(uri).openConnection();
 		if (headers != null) {

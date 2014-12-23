@@ -13,7 +13,9 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Class provides API for operations over reservations.
+ *
+ * @author Ondřej Krejčíř
  */
 @Path(value = "reservation")
 public class ReservationResource {
@@ -26,6 +28,13 @@ public class ReservationResource {
 		this.userService = new UserService();
 	}
 
+	/**
+	 * API method to get all flights.
+	 * [server]/flight/
+	 *
+	 * @param authorization authorization string
+	 * @return Response
+	 */
 	@GET
 	@Path("/")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -41,6 +50,14 @@ public class ReservationResource {
 		}
 	}
 
+	/**
+	 * API method to get the flight.
+	 * [server]/flight/{id}
+	 *
+	 * @param password password key to access the reservation
+	 * @param id identificator of the reservation
+	 * @return Response
+	 */
 	@GET
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -57,6 +74,13 @@ public class ReservationResource {
 		}
 	}
 
+	/**
+	 * API method to create new flight.
+	 * [server]/flight/
+	 *
+	 * @param data json object descripting the reservation
+	 * @return Response
+	 */
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -71,6 +95,15 @@ public class ReservationResource {
 		}
 	}
 
+	/**
+	 * API method to update the flight.
+	 * [server]/flight/{id}
+	 *
+	 * @param password password key to access the reservation
+	 * @param id identificator of the reservation
+	 * @param data json object descripting the reservation
+	 * @return Response
+	 */
 	@PUT
 	@Path("{id}")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -89,6 +122,14 @@ public class ReservationResource {
 		}
 	}
 
+	/**
+	 * API method to delete the flight.
+	 * [server]/flight/{id}
+	 *
+	 * @param authorization authorization string
+	 * @param id identificator of the reservation
+	 * @return Response
+	 */
 	@DELETE
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)

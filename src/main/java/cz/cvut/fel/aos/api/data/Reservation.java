@@ -1,19 +1,45 @@
 package cz.cvut.fel.aos.api.data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * Created by krejcir on 27.10.14.
+ * @author Ondřej Krejčíř
  */
 public class Reservation implements Serializable {
 
+	/**
+	 * Identificator
+	 */
 	private Long id;
+
+	/**
+	 * Identificator of reserved flight
+	 */
 	private int flight;
+
+	/**
+	 * Count of seats to reserve
+	 */
 	private int seats;
+
+	/**
+	 * Reservation password
+	 */
 	private String password;
+
+	/**
+	 * State of reservation (new, canceled, paid)
+	 */
 	private String state;
+
+	/**
+	 * String value of creation date in format iso8601: YYYY-MM-DDThh:mm:ssTZD
+	 */
 	private String created;
+
+	/**
+	 * URL of REST source of destination
+	 */
 	private String url;
 
 	public Long getId() {

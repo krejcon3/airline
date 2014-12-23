@@ -4,29 +4,49 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by krejcir on 27.10.14.
+ * Describes reservation entity
+ *
+ * @author Ondřej Krejčíř
  */
 @Entity
 @Table(name = "reservation")
 public class ReservationEntity extends AbstractEntity {
 
+	/**
+	 * Identificator
+	 */
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Long id;
 
+	/**
+	 * Identificator of reserved flight
+	 */
 	@Column(name = "flight", nullable = false)
 	private int flight;
 
+	/**
+	 * Count of seats to reserve
+	 */
 	@Column(name = "seats", nullable = false)
 	private int seats;
 
+	/**
+	 * Reservation password
+	 */
 	@Column(name = "password", nullable = false)
 	private String password;
 
+	/**
+	 * State of reservation (new, canceled, paid)
+	 */
 	@Column(name = "state", nullable = false)
 	private String state;
 
+	/**
+	 * Creation date
+	 */
 	@Column(name = "created", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
