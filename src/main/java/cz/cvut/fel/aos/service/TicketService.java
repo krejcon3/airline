@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.api;
+package cz.cvut.fel.aos.service;
 
 import javax.jws.WebService;
 import javax.xml.ws.soap.MTOM;
@@ -10,7 +10,7 @@ import java.io.*;
  * @author Ondřej Krejčíř
  */
 @MTOM
-@WebService(endpointInterface = "cz.cvut.fel.aos.api.ITicketService")
+@WebService(endpointInterface = "cz.cvut.fel.aos.service.ITicketService")
 public class TicketService implements ITicketService {
 
 	/**

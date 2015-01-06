@@ -1,4 +1,4 @@
-package cz.cvut.fel.aos.api;
+package cz.cvut.fel.aos.service;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;

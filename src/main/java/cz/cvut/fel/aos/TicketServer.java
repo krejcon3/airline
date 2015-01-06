@@ -1,6 +1,6 @@
 package cz.cvut.fel.aos;
 
-import cz.cvut.fel.aos.api.TicketService;
+import cz.cvut.fel.aos.service.TicketService;
 
 import javax.xml.ws.Endpoint;
 
