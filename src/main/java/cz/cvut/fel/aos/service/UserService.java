@@ -21,12 +21,11 @@ public class UserService {
 
 	/**
 	 * Compare input password with database
-	 * funny name for private function ;-)
 	 *
 	 * @param pseudoToken input password
 	 * @return boolean if is authorized
 	 */
-	private boolean checkItSmallGorilla(String pseudoToken) {
+	private boolean comparePasswords(String pseudoToken) {
 		String[] raw = Base64.base64Decode(pseudoToken).split(":");
 		try {
 			UserEntity userEntity = this.dao.get(raw[0]);
@@ -45,7 +44,7 @@ public class UserService {
 	 */
 	public boolean authenticate(String authorization) throws UnauthorizedException {
 		if (authorization != null) {
-			if (this.checkItSmallGorilla(authorization)) {
+			if (this.comparePasswords(authorization)) {
 				return true;
 			}
 		}
